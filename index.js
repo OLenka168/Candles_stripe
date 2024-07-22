@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-app.post("/stripe/charge", cors(), async (req, res) => {
+app.post("/", cors(), async (req, res) => {
   console.log("stripe-routes.js 9 | route reached", req.body);
   let { amount, id } = req.body;
   console.log("stripe-routes.js 10 | amount and id", amount, id);
@@ -20,7 +20,7 @@ app.post("/stripe/charge", cors(), async (req, res) => {
       description: "CandlesHome",
       payment_method: id,
       confirm: true,
-      return_url: "http://localhost:3000",
+      return_url: "https://candelshome.netlify.app",
     });
     console.log("stripe-routes.js 19 | payment", payment);
     res.json({
